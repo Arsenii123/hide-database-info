@@ -1,7 +1,13 @@
 import os
-import posixpath
+import sys
+from pathlib import Path
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# ВАЖНО: Принудительно добавляем корень проекта в пути Python,
+# чтобы Windows-версия Python видела приложение core и templatetags
+sys.path.append(str(BASE_DIR))
 
 SECRET_KEY = 'c20f7341-fb5b-40e1-aacd-a29094cd39ad'
 
@@ -10,14 +16,14 @@ DEBUG = True
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 INSTALLED_APPS = [
-    'core',
-    'branches',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'core.apps.CoreConfig',  # <--- Обязательно добавьте эту строчку!
+    'models'
 ]
 
 MIDDLEWARE = [
@@ -29,7 +35,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # кастомна мідлварь для 403-404
-    'middleware.custom.ForceCustomErrorsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'company_site.urls'
@@ -47,7 +53,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-            ],
+            ]
         },
     },
 ]
@@ -55,10 +61,15 @@ TEMPLATES = [
 WSGI_APPLICATION = 'company_site.wsgi.application'
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+'default': {
+   'ENGINE': os.getenv('DB_ENGINE'),
+   'NAME': os.getenv('DB_NAME'),
+   'HOST': os.getenv('DB_HOST'),
+   'OPTIONS': {
+       'driver': os.getenv('DB_DRIVER'),
+       'trusted_connection': os.getenv('DB_TRUSTED_CONNECTION'),
+       'extra_params': os.getenv('DB_EXTRA_PARAMS'),
+   },
 }
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -79,3 +90,5 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'

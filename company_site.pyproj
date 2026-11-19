@@ -35,19 +35,43 @@
     <Compile Include="branches\urls.py" />
     <Compile Include="branches\views.py" />
     <Compile Include="core\apps.py" />
+    <Compile Include="core\templatetags\custom_t.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="core\templatetags\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="core\Product.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="core\urls.py" />
     <Compile Include="core\views.py" />
+    <Compile Include="core\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="manage.py" />
     <Compile Include="company_site\settings.py" />
     <Compile Include="company_site\urls.py" />
     <Compile Include="company_site\wsgi.py" />
     <Compile Include="middleware\custom.py" />
+    <Compile Include="models\admin.py" />
+    <Compile Include="models\apps.py" />
+    <Compile Include="models\migrations\__init__.py" />
+    <Compile Include="models\models.py" />
+    <Compile Include="models\tests.py" />
+    <Compile Include="models\views.py" />
+    <Compile Include="models\__init__.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".env">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="branches\templates\branches_list.html" />
     <Content Include="branches\templates\odesa.html" />
     <Content Include="branches\templates\orleans.html" />
     <Content Include="core\templates\about.html" />
+    <Content Include="core\templates\products.html" />
+    <Content Include="db.sqlite3" />
     <Content Include="templates\base.html" />
     <Content Include="core\templates\contacts.html" />
     <Content Include="core\templates\home.html" />
@@ -68,10 +92,14 @@
   <ItemGroup>
     <Folder Include="branches\" />
     <Folder Include="branches\templates\" />
+    <Folder Include="core\templatetags\" />
     <Folder Include="core\templates\" />
     <Folder Include="company_site\" />
     <Folder Include="core\" />
     <Folder Include="middleware\" />
+    <Folder Include="core\templatestags\" />
+    <Folder Include="models\" />
+    <Folder Include="models\migrations\" />
     <Folder Include="static\" />
     <Folder Include="static\css\" />
     <Folder Include="static\js\" />

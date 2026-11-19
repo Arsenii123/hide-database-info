@@ -13,6 +13,7 @@ urlpatterns = [
     path('management/', views.management, name='management'),
     path('about/', views.about, name='about'),
     path('contacts/', views.contacts, name='contacts'),
+    path('products/',views.products, name="products"),
 
     # URL для розділу "Філії" (він підключає branches/urls.py)
     path('branches/', include('branches.urls')),

@@ -361,3 +361,20 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Python / Django / uv
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+db.sqlite3
+db.sqlite3-journal
+.uv/
+uv.lock
+media/
+staticfiles/
